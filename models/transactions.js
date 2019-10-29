@@ -5,36 +5,36 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const TransactionsSchema = new Schema({
-  _id: {
-    type: String,
-    required: false
-  },
-  Date: {
-    type: Date,
-    required: true,
-    default: Date.now  // this line means we don't have to overtly set the time 
-    // the task was created, it will be set as we create a new document
-  },
-  AccountID: {
-    type: Number,
-    required: true,
-  },
-  Category: {
-    type: Number,
-    required: true,
-  },
-  Payee: {
-    type: String,
-    required: true,
-  },
-  Memo: {
-    type: String,
-    required: false,
-  },
-  Amount: {
-    type: Number,
-    required: true,
-  }
+    _id: {
+        type: String,
+        required: false
+    },
+    Date: {
+        type: Date,
+        required: true,
+        default: Date.now // this line means we don't have to overtly set the time 
+            // the task was created, it will be set as we create a new document
+    },
+    AccountID: {
+        type: Number,
+        required: true,
+    },
+    Category: {
+        type: Number,
+        required: true,
+    },
+    Payee: {
+        type: String,
+        required: true,
+    },
+    Memo: {
+        type: String,
+        required: false,
+    },
+    Amount: {
+        type: Number,
+        required: true,
+    }
 });
 
-module.exports = mongoose.model("Transactions", TransactionsSchema);
+module.exports = mongoose.model("Tasks", TransactionsSchema);
