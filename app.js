@@ -25,7 +25,7 @@ app.use(cors(corsOptions))   // bringing in the CORS code to our app
 
 // API ENDPOINTS
 // not using the Express Router code, instead just listing them
-// each of these 5 routed call one of the 5 methods defined in taskController
+// each of these 5 routed call one of the 5 methods defined in transactionsController
 // which in turn call Mongo Atlas, each of those 5 do a return to the client
 // notive they are "keyed", but HTTP request type, get, put, etc
 app

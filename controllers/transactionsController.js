@@ -54,7 +54,7 @@ exports.updateTransaction = (req, res) => {
 
 
 exports.deleteTransaction = (req, res) => {
-  Transaction.remove({ _id: req.params.taskid }, (err, task) => {  // don't know who changed the name from _id
+  Transaction.remove({ _id: req.params.transactionid }, (err, transaction) => {  // don't know who changed the name from _id
     if (err) {
       res.status(404).send(err);
     }
