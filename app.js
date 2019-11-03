@@ -14,6 +14,11 @@ var corsOptions = {
 // this brings in and sets up the monog db instance connection
 require("./config/db");
 
+//this is for finding by value
+var url = require('url'); 
+var address = 'http://localhost:8080/index.php?type=page&action=update&id=5221'; 
+var q = url.parse(address, true); 
+
 const app = express();
 
 //const port = process.env.PORT || 3000;  // setting the port number for this server
@@ -39,6 +44,11 @@ app
     .get(transactionsController.readTransaction)
     .put(transactionsController.updateTransaction)
     .delete(transactionsController.deleteTransaction);
+app
+    //.route("/transactionsfindbyvalues?:values")
+    .route("/transactionsfindbyvalues/:values")
+    .get(transactionsController.findTransactionsByValues)
+
 
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
