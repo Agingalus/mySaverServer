@@ -35,7 +35,7 @@ app
     .post(transactionsController.createNewTransaction);
 
 app
-    .route("/transactions/:transactionid")
+    .route("/transactions/:_id")
     .get(transactionsController.readTransaction)
     .put(transactionsController.updateTransaction)
     .delete(transactionsController.deleteTransaction);

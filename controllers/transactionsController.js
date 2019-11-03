@@ -26,11 +26,26 @@ exports.createNewTransaction = (req, res) => {
   });
 };
 
-exports.readTransaction = (req, body) => {
-  Transaction.findById(req.params.transactionid, (err, transaction) => {
+exports.readTransaction = (req, res) => {
+
+
+
+  
+  var ObjectId = require('mongodb').ObjectId;
+  var id = req.params._id;       
+  var o_id = new ObjectId(id);
+  //db.test.find({_id:o_id}) //notice the curly braces
+  
+
+  Transaction.find(o_id, (err, transaction) => {
+    //console.log("the {_id:o_id} is ", {_id:o_id});
+    console.log("the o_id is ", o_id);
+
     if (err) {
       res.status(500).send(err);
     }
+    //console.log("Response is", res);
+
     res.status(200).json(transaction);
   });
 };
