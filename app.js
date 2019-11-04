@@ -6,7 +6,7 @@ const cors = require('cors') // using this module to solve CORS problem
 
 var corsOptions = {
     origin: 'mysaverserver.azurewebsites.net',
-    //origin: 'http://localhost:4200',   // this URL must match the URL that the Angular app will call from
+    origin: 'http://localhost:4200', // this URL must match the URL that the Angular app will call from
     //origin: 'kurtangularappfall2019.azurewebsites.net',   // this URL must match the URL that the Angular app will call from
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204 
 }
