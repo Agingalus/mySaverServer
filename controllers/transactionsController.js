@@ -117,10 +117,62 @@ exports.updateTransaction = (req, res) => {
 };
 
 exports.deleteTransaction = (req, res) => {
-  Transaction.remove({ _id: req.params.transactionid }, (err, transaction) => {  // don't know who changed the name from _id
+
+  
+  var ObjectId = require('mongodb').ObjectId;
+  var id = req.params._id;       
+  var o_id = new ObjectId(id);
+
+  //var myString = req.params._id;
+  console.log("o_id is ", o_id, " of type ", typeof(o_id));
+  
+
+  Transaction.find(o_id, (err, transaction) => {
+    //console.log("the {_id:o_id} is ", {_id:o_id});
+    console.log("the o_id is ", o_id);
+
     if (err) {
-      res.status(404).send(err);
+      res.status(500).send(err);
     }
-    res.status(200).json({ message: "Transaction successfully deleted" });
+    //console.log("Response is", res);
+
+    //console.log("First find result");
+    //res.status(200).json(transaction)
+    console.log(transaction);
   });
+
+  //db.orders.deleteOne( { "_id" : ObjectId("563237a41a4d68582c2509da") } );
+  //({student_staff_id:2})
+
+  //var uid = req.params._id;
+  //{'_id': ObjectId(uid)}
+
+  id2 = 'ObjectID("'+id+'")';
+  console.log(id2);
+
+  Transaction.deleteOne({"_id":id2}, (err, transaction) => {  
+    console.log("inside DeleteOne the id2 is ", id2);
+    
+    if (err) {
+      //res.status(404).send(err);
+      res.status(500).send(err);
+    }
+    res.status(200).json({ message: "Transaction successfully deleted."});
+  });
+
+  Transaction.find(o_id, (err, transaction) => {
+    //console.log("the {_id:o_id} is ", {_id:o_id});
+    console.log("the o_id is ", o_id);
+
+    if (err) {
+      res.status(500).send(err);
+    }
+    //console.log("Response is", res);
+
+    //res.status(200).json(transaction);
+    console.log("Second find result");
+    console.log(transaction);
+  });
+
+
 };

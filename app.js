@@ -3,6 +3,8 @@ const bodyParser = require("body-parser");
 const transactionsController = require("./controllers/transactionsController");
 const cors = require('cors') // using this module to solve CORS problem
     // note the extra line in package.json to download this code
+var postman = require('postman'); //use this package for testing
+
 
 var corsOptions = {
     origin: 'mysaverserver.azurewebsites.net',
