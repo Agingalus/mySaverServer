@@ -59,6 +59,7 @@ exports.findTransactionsByValues = (req, res) => {
   //https://github.com/josdejong/jsoneditor/issues/334
   //"Yes you can do that with a query parameter json, for example:
   //http://jsoneditoronline.org/?json={%22name%22:%22John%22,%22age%22:32}"
+  //In our case {"Amount":626.98,"Payee":"BC"}
 
 
   //var ObjectId = require('mongodb').ObjectId;
