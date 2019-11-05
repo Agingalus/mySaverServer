@@ -10,9 +10,7 @@ var postman = require('postman'); //use this package for testing
 
 
 var corsOptions = {
-    origin: 'https://mysaver.azurewebsites.net',
-    origin: 'mysaver.azurewebsites.net',
-    origin: 'http://localhost:4200', // this URL must match the URL that the Angular app will call from
+    origin: ['https://mysaver.azurewebsites.net', 'mysaver.azurewebsites.net', 'http://localhost:4200'], // this URL must match the URL that the Angular app will call from
     //origin: 'kurtangularappfall2019.azurewebsites.net',   // this URL must match the URL that the Angular app will call from
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204 
 }
