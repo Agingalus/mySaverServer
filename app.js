@@ -1,8 +1,13 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const transactionsController = require("./controllers/transactionsController");
+const recurringTransactionsController = require("./controllers/recurringTransactionsController");
+const accountsController = require("./controllers/accountsController");
+const budgetsController = require("./controllers/budgetsController");
 const cors = require('cors') // using this module to solve CORS problem
     // note the extra line in package.json to download this code
+var postman = require('postman'); //use this package for testing
+
 
 var corsOptions = {
     origin: 'https://mysaver.azurewebsites.net',
@@ -13,6 +18,11 @@ var corsOptions = {
 
 // this brings in and sets up the monog db instance connection
 require("./config/db");
+
+//this is for finding by value
+var url = require('url'); 
+var address = 'http://localhost:8080/index.php?type=page&action=update&id=5221'; 
+var q = url.parse(address, true); 
 
 const app = express();
 
@@ -35,10 +45,23 @@ app
     .post(transactionsController.createNewTransaction);
 
 app
-    .route("/transactions/:transactionid")
+    .route("/transactions/:_id")
     .get(transactionsController.readTransaction)
     .put(transactionsController.updateTransaction)
     .delete(transactionsController.deleteTransaction);
+app
+    //.route("/transactionsfindbyvalues?:values")
+    .route("/transactionsfindbyvalues/:values")
+    .get(transactionsController.findTransactionsByValues)
+app
+    .route("/recurringTransactions")
+    .get(recurringTransactionsController.listAllRecurringTransactions);
+app
+    .route("/accounts")
+    .get(accountsController.listAllAccounts);
+app
+    .route("/budgets")
+    .get(budgetsController.listAllBudgets);
 
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
