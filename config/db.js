@@ -27,3 +27,6 @@ mongoose.connect(dbURI, options).then(
 
 // bring in our mongoose schema defintion defintion for a Transactions
 require("../models/transactions");
+require("../models/recurringTransactions");
+require("../models/accounts");
+require("../models/budgets");

@@ -1,6 +1,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const transactionsController = require("./controllers/transactionsController");
+const recurringTransactionsController = require("./controllers/recurringTransactionsController");
+const accountsController = require("./controllers/accountsController");
+const budgetsController = require("./controllers/budgetsController");
 const cors = require('cors') // using this module to solve CORS problem
     // note the extra line in package.json to download this code
 var postman = require('postman'); //use this package for testing
@@ -50,7 +53,15 @@ app
     //.route("/transactionsfindbyvalues?:values")
     .route("/transactionsfindbyvalues/:values")
     .get(transactionsController.findTransactionsByValues)
-
+app
+    .route("/recurringTransactions")
+    .get(recurringTransactionsController.listAllRecurringTransactions);
+app
+    .route("/accounts")
+    .get(accountsController.listAllAccounts);
+app
+    .route("/budgets")
+    .get(budgetsController.listAllBudgets);
 
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
