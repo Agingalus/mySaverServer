@@ -11,6 +11,7 @@ var postman = require('postman'); //use this package for testing
 
 var corsOptions = {
     origin: 'https://mysaver.azurewebsites.net',
+    origin: 'mysaver.azurewebsites.net',
     origin: 'http://localhost:4200', // this URL must match the URL that the Angular app will call from
     //origin: 'kurtangularappfall2019.azurewebsites.net',   // this URL must match the URL that the Angular app will call from
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204 
@@ -20,9 +21,9 @@ var corsOptions = {
 require("./config/db");
 
 //this is for finding by value
-var url = require('url'); 
-var address = 'http://localhost:8080/index.php?type=page&action=update&id=5221'; 
-var q = url.parse(address, true); 
+var url = require('url');
+var address = 'http://localhost:8080/index.php?type=page&action=update&id=5221';
+var q = url.parse(address, true);
 
 const app = express();
 
@@ -50,7 +51,7 @@ app
     .put(transactionsController.updateTransaction)
     .delete(transactionsController.deleteTransaction);
 app
-    //.route("/transactionsfindbyvalues?:values")
+//.route("/transactionsfindbyvalues?:values")
     .route("/transactionsfindbyvalues/:values")
     .get(transactionsController.findTransactionsByValues)
 app
