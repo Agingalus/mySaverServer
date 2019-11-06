@@ -4,6 +4,7 @@ const transactionsController = require("./controllers/transactionsController");
 const recurringTransactionsController = require("./controllers/recurringTransactionsController");
 const accountsController = require("./controllers/accountsController");
 const budgetsController = require("./controllers/budgetsController");
+const categoriesController = require('./controllers/categoriesController')
 const cors = require('cors') // using this module to solve CORS problem
     // note the extra line in package.json to download this code
 var postman = require('postman'); //use this package for testing
@@ -61,6 +62,9 @@ app
 app
     .route("/budgets")
     .get(budgetsController.listAllBudgets);
+app
+    .route("/categories")
+    .get(categoriesController.listAllCategories);
 
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
