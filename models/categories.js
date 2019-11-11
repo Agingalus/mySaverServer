@@ -3,9 +3,13 @@ const Schema = mongoose.Schema;
 
 
 const categoriesSchema = new Schema({
+    // _id: {
+    //     type: String,
+    //     required: false
+    // },
     _id: {
-        type: String,
-        required: false
+        type: mongoose.Types.ObjectId,
+        auto: true
     },
     categoryid: {
         type: Number,

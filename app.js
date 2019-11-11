@@ -65,7 +65,8 @@ app
     .post(budgetsController.createNewBudget);
 app
     .route("/categories")
-    .get(categoriesController.listAllCategories);
+    .get(categoriesController.listAllCategories)
+    .post(categoriesController.createNewCategories);
 
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
