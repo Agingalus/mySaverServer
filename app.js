@@ -61,7 +61,8 @@ app
     .get(accountsController.listAllAccounts);
 app
     .route("/budgets")
-    .get(budgetsController.listAllBudgets);
+    .get(budgetsController.listAllBudgets)
+    .post(budgetsController.createNewBudget);
 app
     .route("/categories")
     .get(categoriesController.listAllCategories);
