@@ -162,11 +162,11 @@ exports.deleteTransaction = (req, res) => {
   //var uid = req.params._id;
   //{'_id': ObjectId(uid)}
 
-  id2 = 'ObjectID("'+id+'")';
-  console.log(id2);
+  //id2 = 'ObjectID("'+id+'")';
+  //console.log(id2);
 
-  Transaction.deleteOne({"_id":id2}, (err, transaction) => {  
-    console.log("inside DeleteOne the id2 is ", id2);
+  Transaction.deleteOne({"_id":o_id}, (err, transaction) => {  
+    console.log("inside DeleteOne the id is ", o_id);
     
     if (err) {
       //res.status(404).send(err);
