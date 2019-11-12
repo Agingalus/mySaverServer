@@ -5,10 +5,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const TransactionsSchema = new Schema({
-  _id: {
+  /*_id: { //MongoDB gives errors if we include this
     type: String,
     required: false
-  },
+  },*/
   Date: {
     type: Date,
     required: true,

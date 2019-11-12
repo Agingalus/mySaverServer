@@ -55,7 +55,8 @@ app
     .get(transactionsController.findTransactionsByValues)
 app
     .route("/recurringTransactions")
-    .get(recurringTransactionsController.listAllRecurringTransactions);
+    .get(recurringTransactionsController.listAllRecurringTransactions)
+    .post(recurringTransactionsController.createNewRecurringTransaction);
 app
     .route("/accounts")
     .get(accountsController.listAllAccounts);
