@@ -15,13 +15,26 @@ exports.listAllTransactions = (req, res) => {
   });
 };
 
-exports.createNewTransaction = (req, res) => {
+/*exports.createNewTransaction = (req, res) => {
   let newTransaction = new Transaction(req.body);
   console.log(newTransaction);
   newTransaction.save((err, transaction) => {
     if (err) {
       res.status(500).send(err);
     }
+    res.status(201).json(transaction);
+  });
+};*/
+
+
+//using this code to create new records
+exports.createNewTransaction = (req, res) => {
+let newTransaction = new Transaction(req.body);
+console.log("here is Tx " + newTransaction);
+newTransaction.save((err, transaction) => {
+  if (err) {
+    res.status(500).send(err);
+  }
     res.status(201).json(transaction);
   });
 };
