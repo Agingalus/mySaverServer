@@ -39,6 +39,8 @@ app.use(cors(corsOptions)) // bringing in the CORS code to our app
 // each of these 5 routed call one of the 5 methods defined in transactionsController
 // which in turn call Mongo Atlas, each of those 5 do a return to the client
 // notive they are "keyed", but HTTP request type, get, put, etc
+
+//Transactions 
 app
     .route("/transactions")
     .get(transactionsController.listAllTransactions)
@@ -53,17 +55,24 @@ app
 //.route("/transactionsfindbyvalues?:values")
     .route("/transactionsfindbyvalues/:values")
     .get(transactionsController.findTransactionsByValues)
+
+//Recurring Transactions
 app
     .route("/recurringTransactions")
-    .get(recurringTransactionsController.listAllRecurringTransactions)
-    .post(recurringTransactionsController.createNewRecurringTransaction);
+    .get(recurringTransactionsController.listAllRecurringTransactions);
+
+//Accounts
 app
     .route("/accounts")
-    .get(accountsController.listAllAccounts);
+    .get(accountsController.listAllAccounts)
+    .post(accountsController.createNewAccount);
+
+//Budgets
 app
     .route("/budgets")
-    .get(budgetsController.listAllBudgets)
-    .post(budgetsController.createNewBudget);
+    .get(budgetsController.listAllBudgets);
+
+//Categories
 app
     .route("/categories")
     .get(categoriesController.listAllCategories)

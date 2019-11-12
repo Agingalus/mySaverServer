@@ -12,6 +12,17 @@ exports.listAllAccounts = (req, res) => {
   });
 };
 
+exports.createNewAccount = (req, res) => {
+  let newAccount = new Accounts(req.body);
+  console.log(newAccount);
+  newAccount.save((err, accounts) => {
+    if (err) {
+      res.status(500).send(err);
+    }
+    res.status(201).json(accounts);
+  });
+};
+
 exports.readAccounts= (req, res) => {
   var ObjectId = require('mongodb').ObjectId;
   var id = req.params._id;       
