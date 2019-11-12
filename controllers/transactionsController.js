@@ -60,6 +60,23 @@ exports.readTransaction = (req, res) => {
   });
 };
 
+exports.updateTransaction = (req, res) => {
+  console.log('Transaction id at server is ' + req.params._id);
+  Transaction.findOneAndUpdate(
+    { _id: req.params._id },  // don't know who changed the name from _id
+    req.body,
+    { new: true },  // true or false to let it add if not present?
+    (err, transaction) => {
+      if (err) {
+        res.status(500).send(err);
+      }
+      console.log(transaction);
+      res.status(200).json(transaction);
+    }
+  );
+};
+
+
 exports.findTransactionsByValues = (req, res) => {
   
   //Data needs to be sent in this format:
@@ -113,21 +130,6 @@ exports.findTransactionsByValues = (req, res) => {
 };
 
 
-exports.updateTransaction = (req, res) => {
-  console.log('Transaction id at server is ' + req.params.transactionid);
-  Transaction.findOneAndUpdate(
-    { _id: req.params.transactionid },  // don't know who changed the name from _id
-    req.body,
-    { new: true },  // true or false to let it add if not present?
-    (err, transaction) => {
-      if (err) {
-        res.status(500).send(err);
-      }
-      console.log(transaction);
-      res.status(200).json(transaction);
-    }
-  );
-};
 
 exports.deleteTransaction = (req, res) => {
 
