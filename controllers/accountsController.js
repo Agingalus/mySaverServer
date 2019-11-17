@@ -25,35 +25,62 @@ exports.createNewAccount = (req, res) => {
   });
 };
 
-//Delete Account
-exports.deleteAccount = (req,res) => {
-    var ObjectId = require('mongodb').ObjectID;
-    var id = req.params._id;
-    var o_id = new ObjectId(id);
+//Edit Account
+exports.editAccounts = (req, res) => {
+  var ObjectId = require('mongodb').ObjectID;
+  var id = req.params._id;
+  var o_id = new ObjectId(id);
 
-    Accounts.find(o_id, (err, accounts) => {
-      console.log("the id is", o_id);
-      if(err) {
+  Accounts.find(o_id, (err, accounts) => {
+    console.log("the id is", o_id);
+    if (err) {
+      res.status(500).send(err);
+    }
+    console.log(accounts);
+
+    Accounts.updateOne({"_id": o_id}, (err, accounts))
+    if (err) {
+      res.status(500).send(err);
+    }
+    res.status(200).json({ message: "Account successfully updated" });
+  });
+
+  Accounts.find(o_id, (err, accounts) => {
+    if (err) {
+      res.status(500).send(err);
+    }
+  });
+}
+
+//Delete Account
+exports.deleteAccount = (req, res) => {
+  var ObjectId = require('mongodb').ObjectID;
+  var id = req.params._id;
+  var o_id = new ObjectId(id);
+
+  Accounts.find(o_id, (err, accounts) => {
+    console.log("the id is", o_id);
+    if (err) {
+      res.status(500).send(err);
+    }
+    console.log(accounts);
+
+    Accounts.deleteOne({ "_id": o_id }, (err, accounts) => {
+      console.log("inside DeleteOne the id is ", o_id);
+
+      if (err) {
+        //res.status(404).send(err);
         res.status(500).send(err);
       }
-      console.log(accounts);
-
-      Accounts.deleteOne({"_id":o_id}, (err, accounts) => {  
-        console.log("inside DeleteOne the id is ", o_id);
-        
-        if (err) {
-          //res.status(404).send(err);
-          res.status(500).send(err);
-        }
-        res.status(200).json({ message: "Account successfully deleted."});
-      });
-
-      Accounts.find(o_id, (err, accounts) => {
-        if(err) {
-          res.status(500).send(err);
-        }
-      });
+      res.status(200).json({ message: "Account successfully deleted." });
     });
-  }
+
+    Accounts.find(o_id, (err, accounts) => {
+      if (err) {
+        res.status(500).send(err);
+      }
+    });
+  });
+}
 
 
