@@ -1,7 +1,8 @@
 const Accounts = require("../models/accounts");
 
+//Get Accounts
 exports.listAllAccounts = (req, res) => {
-  console.log(">>>>>>>>>>>>>> IN listAllAccounts <<<<<<<<<");
+  console.log("Get all accounts");
   Accounts.find({}, (err, accounts) => {
     if (err) {
       console.log(err);
@@ -12,6 +13,7 @@ exports.listAllAccounts = (req, res) => {
   });
 };
 
+//Create New Account
 exports.createNewAccount = (req, res) => {
   let newAccount = new Accounts(req.body);
   console.log(newAccount);
@@ -23,20 +25,35 @@ exports.createNewAccount = (req, res) => {
   });
 };
 
-exports.readAccounts= (req, res) => {
-  var ObjectId = require('mongodb').ObjectId;
-  var id = req.params._id;       
-  var o_id = new ObjectId(id);
- 
-  Accounts.find(o_id, (err, accounts) => {
-    console.log("the o_id is ", o_id);
+//Delete Account
+exports.deleteAccount = (req,res) => {
+    var ObjectId = require('mongodb').ObjectID;
+    var id = req.params._id;
+    var o_id = new ObjectId(id);
 
-    if (err) {
-      res.status(500).send(err);
-    }
-    console.log("Response is", res);
+    Accounts.find(o_id, (err, accounts) => {
+      console.log("the id is", o_id);
+      if(err) {
+        res.status(500).send(err);
+      }
+      console.log(accounts);
 
-    res.status(200).json(accounts);
-  });
+      Accounts.deleteOne({"_id":o_id}, (err, accounts) => {  
+        console.log("inside DeleteOne the id is ", o_id);
+        
+        if (err) {
+          //res.status(404).send(err);
+          res.status(500).send(err);
+        }
+        res.status(200).json({ message: "Account successfully deleted."});
+      });
 
-};
+      Accounts.find(o_id, (err, accounts) => {
+        if(err) {
+          res.status(500).send(err);
+        }
+      });
+    });
+  }
+
+
