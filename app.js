@@ -71,7 +71,8 @@ app
 app
     .route("/budgets")
     .get(budgetsController.listAllBudgets)
-    .post(budgetsController.createNewBudget);
+    .post(budgetsController.createNewBudget)
+    .delete(budgetsController.deleteBudget)
 
 //Categories
 app
