@@ -9,7 +9,7 @@ const BudgetsSchema = new Schema({
     _id: { type: mongoose.Types.ObjectId, auto: true },
     BudgetID: {
         type: Number,
-        required: true,
+        required: false,
     },
     Name: {
         type: String,
