@@ -70,7 +70,8 @@ app
 //Budgets
 app
     .route("/budgets")
-    .get(budgetsController.listAllBudgets);
+    .get(budgetsController.listAllBudgets)
+    .push(budgetsController.createNewBudget);
 
 //Categories
 app
