@@ -71,7 +71,7 @@ app
 app
     .route("/budgets")
     .get(budgetsController.listAllBudgets)
-    .push(budgetsController.createNewBudget);
+    .post(budgetsController.createNewBudget);
 
 //Categories
 app
