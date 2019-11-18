@@ -11,3 +11,13 @@ exports.listAllCategories = (req, res) => {
         console.log(categories);
     });
 };
+exports.createNewCategories = (req, res) => {
+    let newCategories = new Categories(req.body);
+    console.log(newCategories);
+    newCategories.save((err, Categories) => {
+        if (err) {
+            res.status(500).send(err);
+        }
+        res.status(201).json(Categories);
+    });
+};

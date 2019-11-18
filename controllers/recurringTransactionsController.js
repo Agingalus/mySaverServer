@@ -29,3 +29,15 @@ exports.readRecurringTransaction = (req, res) => {
   });
 
 };
+
+//using this code to create new records
+exports.createNewRecurringTransaction = (req, res) => {
+  let newRecurringTransactions = new recurringTransactions(req.body);
+  console.log("here is Recurring Transaction " + newRecurringTransactions);
+  newRecurringTransactions.save((err, recurringTransactions) => {
+    if (err) {
+      res.status(500).send(err);
+    }
+      res.status(201).json(recurringTransactions);
+    });
+  };

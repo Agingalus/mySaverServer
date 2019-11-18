@@ -4,7 +4,9 @@ const Schema = mongoose.Schema;
 const AccountsSchema = new Schema({
   _id: {
     type: String,
-    required: false
+    required: false,
+    type: mongoose.Types.ObjectId,
+    auto: true,
   },
   bank: {
     type: String,
@@ -32,7 +34,7 @@ const AccountsSchema = new Schema({
   },
   currency: {
     type: String,
-    required: false,
+    required: true,
   },
   friendlyname: {
     type: Number,

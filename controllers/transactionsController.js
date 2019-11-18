@@ -15,13 +15,26 @@ exports.listAllTransactions = (req, res) => {
   });
 };
 
-exports.createNewTransaction = (req, res) => {
+/*exports.createNewTransaction = (req, res) => {
   let newTransaction = new Transaction(req.body);
   console.log(newTransaction);
   newTransaction.save((err, transaction) => {
     if (err) {
       res.status(500).send(err);
     }
+    res.status(201).json(transaction);
+  });
+};*/
+
+
+//using this code to create new records
+exports.createNewTransaction = (req, res) => {
+let newTransaction = new Transaction(req.body);
+console.log("here is Tx " + newTransaction);
+newTransaction.save((err, transaction) => {
+  if (err) {
+    res.status(500).send(err);
+  }
     res.status(201).json(transaction);
   });
 };
@@ -46,6 +59,23 @@ exports.readTransaction = (req, res) => {
     res.status(200).json(transaction);
   });
 };
+
+exports.updateTransaction = (req, res) => {
+  console.log('Transaction id at server is ' + req.params._id);
+  Transaction.findOneAndUpdate(
+    { _id: req.params._id },  // don't know who changed the name from _id
+    req.body,
+    { new: true },  // true or false to let it add if not present?
+    (err, transaction) => {
+      if (err) {
+        res.status(500).send(err);
+      }
+      console.log(transaction);
+      res.status(200).json(transaction);
+    }
+  );
+};
+
 
 exports.findTransactionsByValues = (req, res) => {
   
@@ -100,21 +130,6 @@ exports.findTransactionsByValues = (req, res) => {
 };
 
 
-exports.updateTransaction = (req, res) => {
-  console.log('Transaction id at server is ' + req.params.transactionid);
-  Transaction.findOneAndUpdate(
-    { _id: req.params.transactionid },  // don't know who changed the name from _id
-    req.body,
-    { new: true },  // true or false to let it add if not present?
-    (err, transaction) => {
-      if (err) {
-        res.status(500).send(err);
-      }
-      console.log(transaction);
-      res.status(200).json(transaction);
-    }
-  );
-};
 
 exports.deleteTransaction = (req, res) => {
 
@@ -147,11 +162,11 @@ exports.deleteTransaction = (req, res) => {
   //var uid = req.params._id;
   //{'_id': ObjectId(uid)}
 
-  id2 = 'ObjectID("'+id+'")';
-  console.log(id2);
+  //id2 = 'ObjectID("'+id+'")';
+  //console.log(id2);
 
-  Transaction.deleteOne({"_id":id2}, (err, transaction) => {  
-    console.log("inside DeleteOne the id2 is ", id2);
+  Transaction.deleteOne({"_id":o_id}, (err, transaction) => {  
+    console.log("inside DeleteOne the id is ", o_id);
     
     if (err) {
       //res.status(404).send(err);
