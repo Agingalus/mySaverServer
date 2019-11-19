@@ -9,6 +9,10 @@ const TransactionsSchema = new Schema({
     type: String,
     required: false
   },*/
+  _id: {
+    type: mongoose.Types.ObjectId,
+    auto: true
+  } ,
   Date: {
     type: Date,
     required: true,
