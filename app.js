@@ -72,7 +72,8 @@ app
     .route("/budgets")
     .get(budgetsController.listAllBudgets)
     .post(budgetsController.createNewBudget)
-    .delete(budgetsController.deleteBudget)
+    .put(budgetsController.updateBudget)
+    .delete(budgetsController.deleteBudget);
 
 //Categories
 app
