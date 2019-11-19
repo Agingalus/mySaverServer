@@ -58,29 +58,36 @@ exports.deleteAccount = (req, res) => {
   var id = req.params._id;
   var o_id = new ObjectId(id);
 
-  Accounts.find(o_id, (err, accounts) => {
-    console.log("the id is", o_id);
+  Account.find(o_id, (err, accounts) => {
+    console.log("the o_id is ", o_id);
+
     if (err) {
       res.status(500).send(err);
     }
     console.log(accounts);
+  });
 
-    Accounts.deleteOne({ "_id": o_id }, (err, accounts) => {
+
+    Account.deleteOne({ "_id": o_id }, (err, accounts) => {
       console.log("inside DeleteOne the id is ", o_id);
 
       if (err) {
-        //res.status(404).send(err);
         res.status(500).send(err);
       }
       res.status(200).json({ message: "Account successfully deleted." });
     });
 
-    Accounts.find(o_id, (err, accounts) => {
+    Account.find(o_id, (err, accounts) => {
+      console.log("the o_id is ", o_id);
+  
       if (err) {
         res.status(500).send(err);
       }
-    });
-  });
+     
+      console.log("Second find result");
+      console.log(accounts);
+
+});
 }
 
 

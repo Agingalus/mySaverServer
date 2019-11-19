@@ -65,7 +65,12 @@ app
 app
     .route("/accounts")
     .get(accountsController.listAllAccounts)
-    .post(accountsController.createNewAccount);
+    .post(accountsController.createNewAccount)
+    .put(accountsController.editAccounts)
+
+app
+    .route("/accounts/:_id")
+    .delete(accountsController.deleteAccount)
 
 //Budgets
 app

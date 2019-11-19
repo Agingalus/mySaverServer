@@ -2,12 +2,12 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const AccountsSchema = new Schema({
-  _id: {
-    type: String,
-    required: false,
-    type: mongoose.Types.ObjectId,
-    auto: true,
-  },
+  // _id: {
+  //   type: String,
+  //   required: false,
+  //   type: mongoose.Types.ObjectId,
+  //   auto: true,
+  // },
   bank: {
     type: String,
     required: true,
