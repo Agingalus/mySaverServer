@@ -60,7 +60,8 @@ app
 //Recurring Transactions
 app
     .route("/recurringTransactions")
-    .get(recurringTransactionsController.listAllRecurringTransactions);
+    .get(recurringTransactionsController.listAllRecurringTransactions)
+    .post(recurringTransactionsController.createNewRecurringTransaction);
 
 /////////////////////////////////////////////////////////////////
 //Accounts

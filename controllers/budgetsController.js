@@ -29,6 +29,7 @@ exports.readBudgets = (req, res) => {
     });
 
 };
+
 exports.createNewBudget = (req, res) => {
     let newBudget = new Budgets(req.body);
     console.log(newBudget);
