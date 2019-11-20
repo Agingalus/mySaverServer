@@ -27,30 +27,20 @@ exports.createNewAccount = (req, res) => {
 
 //Edit Account
 exports.editAccounts = (req, res) => {
-  var ObjectId = require('mongodb').ObjectID;
-  var id = req.params._id;
-  var o_id = new ObjectId(id);
-
-  Accounts.find(o_id, (err, accounts) => {
-    console.log("the id is", o_id);
-    if (err) {
-      res.status(500).send(err);
+  Accounts.findOneAndUpdate(
+    { _id: req.params._id },  
+    req.body,
+    { new: true },  
+    (err, accounts) => {
+      if (err) {
+        res.status(500).send(err);
+      }
+      console.log(accounts);
+      res.status(200).json(accounts);
     }
-    console.log(accounts);
+  );
+};
 
-    Accounts.updateOne({"_id": o_id}, (err, accounts))
-    if (err) {
-      res.status(500).send(err);
-    }
-    res.status(200).json({ message: "Account successfully updated" });
-  });
-
-  Accounts.find(o_id, (err, accounts) => {
-    if (err) {
-      res.status(500).send(err);
-    }
-  });
-}
 
 //Delete Account
 exports.deleteAccount = (req, res) => {

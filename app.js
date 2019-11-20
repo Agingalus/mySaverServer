@@ -66,11 +66,11 @@ app
     .route("/accounts")
     .get(accountsController.listAllAccounts)
     .post(accountsController.createNewAccount)
-    .put(accountsController.editAccounts)
 
 app
     .route("/accounts/:_id")
     .delete(accountsController.deleteAccount)
+    .put(accountsController.editAccounts)
 
 //Budgets
 app

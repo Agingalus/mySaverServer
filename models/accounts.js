@@ -17,7 +17,7 @@ const AccountsSchema = new Schema({
     required: true,
   },
   accounttype: {
-    type: Number,
+    type: String,
     required: true,
   },
   accountid: {
@@ -37,7 +37,7 @@ const AccountsSchema = new Schema({
     required: true,
   },
   friendlyname: {
-    type: Number,
+    type: String,
     required: true,
   }
 });
