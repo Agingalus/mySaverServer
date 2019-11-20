@@ -56,17 +56,20 @@ app
     .route("/transactionsfindbyvalues/:values")
     .get(transactionsController.findTransactionsByValues)
 
+/////////////////////////////////////////////////////////////////
 //Recurring Transactions
 app
     .route("/recurringTransactions")
     .get(recurringTransactionsController.listAllRecurringTransactions);
 
+/////////////////////////////////////////////////////////////////
 //Accounts
 app
     .route("/accounts")
     .get(accountsController.listAllAccounts)
     .post(accountsController.createNewAccount);
 
+/////////////////////////////////////////////////////////////////
 //Budgets
 app
     .route("/budgets")
@@ -75,12 +78,18 @@ app
     .put(budgetsController.updateBudget)
     .delete(budgetsController.deleteBudget);
 
+/////////////////////////////////////////////////////////////////
 //Categories
 app
     .route("/categories")
     .get(categoriesController.listAllCategories)
     .post(categoriesController.createNewCategories);
+app
+    .route("/categories/:_id")
+    .put(categoriesController.updateCategory)
+    .delete(categoriesController.deleteCategory);
 
+/////////////////////////////////////////////////////////////////
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });
