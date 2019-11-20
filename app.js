@@ -69,7 +69,7 @@ app
     .route("/accounts")
     .get(accountsController.listAllAccounts)
     .post(accountsController.createNewAccount)
-
+    .delete(accountsController.deleteAccount);
 app
     .route("/accounts/:_id")
     .delete(accountsController.deleteAccount)
